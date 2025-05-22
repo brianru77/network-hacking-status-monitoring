@@ -1,4 +1,4 @@
-# 네트워크 상태 모니터링 프로그램
+## 네트워크 상태 모니터링 프로그램
 ### Electron + React 기반
 - Backend (Node.js / Express + Electron)
 - Node.js 기반의 Express 서버 (네트워크 정보 처리, netstat -ano)
