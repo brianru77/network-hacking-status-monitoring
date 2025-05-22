@@ -1,4 +1,3 @@
-# 해킹으로부터 내 컴퓨터를 보호하는
 ## 네트워크 상태 모니터링 프로그램
 ### Electron + React 기반
 - Backend (Node.js / Express + Electron)
