@@ -16,17 +16,19 @@
 - 0시부터 6시 새벽 시간에 유지되는 연결이 있는지 확인
 > 위 조건에 해당사항 없으면 판단 불가 unknown로 표기.  
 > 이상 포트/접속 여부를 대시보드 형태로 시각화, 
-> 만약 위험한 접속이 감지될 시 경고 알림.   
+> 만약 위험한 접속이 감지될 시 경고 알림.
 
 #### 실행 화면
 <p align="center">
-<img src="https://github.com/user-attachments/assets/52173755-817e-4731-bef0-36577e5460be" width="100%" height="100%">
-<img src="https://github.com/user-attachments/assets/89940088-0151-4de8-813a-9eb82b3a4253" width="100%" height="100%">
+<img src="https://github.com/user-attachments/assets/e78c84da-eaf2-44d3-8b60-d6c061373896" width="40%" height="100%">
+<img src="https://github.com/user-attachments/assets/6f12c92b-3613-440d-8e54-358c9cb4325d" width="40%" height="100%">
 </p> 
 <p align="center">
-<img src="https://github.com/user-attachments/assets/03b18e1a-dd17-49a2-941f-9146f96b120a" width="100%" height="100%">
+<img src="https://github.com/user-attachments/assets/688d70bb-a485-4a6c-9d19-9a0890dae189" width="100%" height="100%">
+<img src="https://github.com/user-attachments/assets/bbff33ce-2624-44ce-844a-c5385f21a14a" width="100%" height="100%">
 
 #### 의심되는 파일 위치 열기 
+<img src="https://github.com/user-attachments/assets/89940088-0151-4de8-813a-9eb82b3a4253" width="100%" height="100%">
 <img src="https://github.com/user-attachments/assets/d32d0303-a4fa-4990-b06a-5d059d25c9a0" width="100%" height="100%">
 </p>  
 
