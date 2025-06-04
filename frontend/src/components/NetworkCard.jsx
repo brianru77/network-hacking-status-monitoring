@@ -11,17 +11,15 @@ const formatBytes = (bytes) => {
 
 const NetworkCard = ({ name, received, sent }) => {
   return (
-    <div className="bg-white shadow-lg rounded-2xl p-4 w-full max-w-md m-2">
-      <h2 className="text-xl font-semibold text-gray-800 mb-3">{name}</h2>
-      <div className="flex justify-between items-center">
-        <div className="text-left">
-          <p className="text-sm text-gray-500">📥 들어오는 데이터</p>
-          <p className="text-lg font-bold text-blue-600">{formatBytes(received)}</p>
-        </div>
-        <div className="text-left">
-          <p className="text-sm text-gray-500">📤 나가는 데이터</p>
-          <p className="text-lg font-bold text-red-500">{formatBytes(sent)}</p>
-        </div>
+    <div className="m-2 p-4 border rounded shadow w-72">
+      <h2 className="text-lg font-bold mb-2">{name}</h2>
+      <div className="flex justify-between">
+        <span>📥 들어오는 데이터</span>
+        <span className="text-blue-600">{received?.toFixed(2)} B/s</span>
+      </div>
+      <div className="flex justify-between">
+        <span>📤 나가는 데이터</span>
+        <span className="text-red-600">{sent?.toFixed(2)} B/s</span>
       </div>
     </div>
   );
