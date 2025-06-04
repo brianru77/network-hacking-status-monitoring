@@ -18,10 +18,13 @@
 > 이상 포트/접속 여부를 대시보드 형태로 시각화.    
 > 만약 위험한 접속이 감지될 시 경고 알림.
 
-### New Version
+### 현재 버전_New Version
+
+
+---
 
 <details>
-<summary>구Version</summary>
+<summary>구버전 보기</summary>
 
 #### 실행 화면
 <p align="center">
