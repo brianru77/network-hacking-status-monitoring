@@ -18,6 +18,11 @@
 > 이상 포트/접속 여부를 대시보드 형태로 시각화.    
 > 만약 위험한 접속이 감지될 시 경고 알림.
 
+### New Version
+
+<details>
+<summary>구Version</summary>
+
 #### 실행 화면
 <p align="center">
 <img src="https://github.com/user-attachments/assets/e78c84da-eaf2-44d3-8b60-d6c061373896" width="40%" height="100%">
@@ -33,4 +38,6 @@
 </p>  
 
 > 해당 위치에 파일이 없으면 "정보를 가져오는데 실패했습니다", 해당 위치에 파일이 있으면 이동.
+</details>  
+
 ---
