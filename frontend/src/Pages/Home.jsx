@@ -108,27 +108,53 @@ function Home() {
         const isSuspicious = !isSystemProcess && isSuspiciousPath(path);
 
         let score = 0;
-        if (commonPorts.includes(parseInt(conn.port))) score -= 1;
-        if (geo.org && ['Google', 'Microsoft', 'Amazon', 'Cloudflare'].some(t => geo.org.includes(t))) score -= 1;
-        if (weirdPort) score += 2;
-        if (isUnresponsive) score += 1;
-        if (isDuplicateConn) score += 1;
-        if (isListeningWeird) score += 2;
-        if (isLateNight) score += 1;
-        if (isSuspicious) score += 2;
-        if (['china', 'russia', 'north korea'].some(bad => (geo.country || '').toLowerCase().includes(bad))) score += 2;
+        let riskLevel = '관찰 대상';
+        let riskColor = 'black'; // 기본 색깔: 검정
 
-        // 시스템 프로세스일 경우 점수 초기화하여 안전하게 처리
-        if (isSystemProcess) {
-          score = -2;  // 시스템 프로세스는 매우 안전하게 처리
+        // 조건별 점수 및 위험도 설정
+        if (conn.ip === '' || conn.ip === '0.0.0.0') {
+          riskLevel = '관찰 대상';
+          riskColor = 'black';
+          score = 0;
+        } else if (commonPorts.includes(parseInt(conn.port))) {
+          riskLevel = '정상 포트';
+          riskColor = 'green'; // 초록색
+          score = 1;
+        } else if (geo.org && ['Google', 'Microsoft', 'Amazon', 'Cloudflare'].some(t => geo.org.includes(t))) {
+          riskLevel = '안전한 서버';
+          riskColor = 'green'; // 초록색
+          score = 1;
+        } else if (isUnresponsive) {
+          riskLevel = '응답없음/스캔공격 또는 패킷 필터링 의심';
+          riskColor = '#FFEB3B'; // 노란색
+          score = 2;
+        } else if (isLateNight) {
+          riskLevel = '자동화 공격/스캔/침입시도/DDoS 공격 의심';
+          riskColor = '#FFEB3B'; // 노란색
+          score = 2;
+        } else if (isDuplicateConn) {
+          riskLevel = '취약점 스캐닝 위한 악성 프로세스 연결시도 의심';
+          riskColor = 'orange'; // 주황색
+          score = 3;
+        } else if (weirdPort) {
+          riskLevel = '일반적으로 사용되지 않는 포트/비정상적 연결';
+          riskColor = 'orange'; // 주황색
+          score = 3;
+        } else if (isSuspicious) {
+          riskLevel = '비정상 파일 경로/의심되는 확장자로 악성코드 의심';
+          riskColor = 'red'; // 빨간색
+          score = 4;
+        } else if (['china', 'russia', 'north korea'].some(bad => (geo.country || '').toLowerCase().includes(bad))) {
+          riskLevel = '사이버 공격/스파이 활동/정보 유출 시도';
+          riskColor = 'red'; // 빨간색
+          score = 4;
+        } else if (isListeningWeird) {
+          riskLevel = '시스템을 감염시키려는 백도어 의심';
+          riskColor = 'darkred'; // 검붉은색
+          score = 5;
         }
 
-        let riskLevel = '관찰 대상';
-        if (score <= -1) riskLevel = commonPorts.includes(parseInt(conn.port)) ? '정상 포트' : '안전한 서버';
-        else if (score >= 6) riskLevel = '위험한 연결 해킹 강력 의심';
-        else if (score >= 3) riskLevel = '비정상 연결 스캔 봇 가능성';
-        else if (score >= 1) riskLevel = '무응답 열린포트or스캔 실패 의심';
-
+        // 고위험 연결에 알림 띄우기
         const alertKey = `${conn.ip}_${conn.pid}`;
         if (riskLevel === '위험한 연결 해킹 강력 의심' && !seenAlerts.has(alertKey)) {
           new Notification("🚨 위험 연결 감지", {
@@ -145,6 +171,7 @@ function Home() {
           weirdPort,
           risk: riskLevel,
           riskScore: score,
+          riskColor: riskColor,
           isUnresponsive,
           isDuplicateConn,
           isListeningWeird,
@@ -169,7 +196,7 @@ function Home() {
 
   return (
     <div className="p-4">
-      <h1 className="text-2xl font-bold text-center mb-6">📡 네트워크 모니터링 프로그램3</h1>
+      <h1 className="text-2xl font-bold text-center mb-6">📡 네트워크 모니터링 프로그램</h1>
       <NetworkUI data={networkData} />
       <div className="mt-10">
         <h2 className="text-xl font-semibold mb-4">🔌 연결된 IP 목록</h2>
@@ -203,7 +230,9 @@ function Home() {
                   <td className="border px-2 py-1">{conn.country}</td>
                   <td className="border px-2 py-1">{conn.region}</td>
                   <td className="border px-2 py-1">{conn.org}</td>
-                  <td className="border px-2 py-1" style={{ color: conn.weirdPort ? 'red' : 'inherit' }}>{conn.port} {conn.weirdPort && '⚠️'}</td>
+                  <td className="border px-2 py-1" style={{ color: conn.weirdPort ? 'red' : 'inherit' }}>
+                    {conn.port} {conn.weirdPort && '⚠️'}
+                  </td>
                   <td className="border px-2 py-1">{conn.state}</td>
                   <td className="border px-2 py-1">{conn.pid}</td>
                   <td
@@ -215,11 +244,7 @@ function Home() {
                   <td
                     className="border px-2 py-1 font-semibold"
                     style={{
-                      color:
-                        conn.risk === '위험한 연결 해킹 강력 의심' ? 'red' :
-                        conn.risk === '비정상 연결 스캔 봇 가능성' ? 'orange' :
-                        conn.risk === '무응답 열린포트or스캔 실패 의심' ? 'goldenrod' :
-                        'green'
+                      color: conn.riskColor
                     }}
                   >
                     {conn.risk}
