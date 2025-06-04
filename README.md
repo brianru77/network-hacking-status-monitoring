@@ -1,8 +1,13 @@
 ## 네트워크 모니터링 프로그램
-### Electron + React 기반
-- Backend (Node.js / Express + Electron)
-- Node.js 기반의 Express 서버 (네트워크 정보 처리, netstat -ano)
-- Electron으로.exe로 패키징 netstat -ano 실행 → 실시간 IP, 포트, PID 정보 수집
+- Frontend: React (네트워크 상태 시각화 UI)
+- Backend: Electron / Node.js
+- 통신 방식: Electron IPC (contextBridge + ipcMain/ipcRenderer)
+- 실시간 네트워크 수집 방식: PowerShell 명령어 직접 호출
+- netstat -ano로 연결된 IP와 포트 그리고 PID 확인
+- tasklist, wmic로 실행 중인 프로세스 정보 확인
+- Get-Counter 네트워크 송/수신량 확인
+- API
+> ip-api.com/ipinfo.io 국가, 지역, 기관 식별
 
 ---
 ### 기능
@@ -25,6 +30,11 @@
 
 <details>
 <summary>구버전 보기</summary>
+  
+### Electron + React 기반
+- Backend (Node.js / Express + Electron)
+- Node.js 기반의 Express 서버 (네트워크 정보 처리, netstat -ano)
+- Electron으로.exe로 패키징 netstat -ano 실행 → 실시간 IP, 포트, PID 정보 수집
 
 #### 실행 화면
 <p align="center">
