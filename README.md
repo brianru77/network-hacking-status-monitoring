@@ -1,4 +1,4 @@
-## 네트워크 모니터링 프로그램
+## 네트워크 상태 모니터링 프로그램
 - Frontend: React (네트워크 상태 시각화 UI)
 - Backend: Electron / Node.js
 - 통신 방식: Electron IPC (contextBridge + ipcMain/ipcRenderer)
