@@ -1,6 +1,6 @@
 ## 네트워크 상태 모니터링 프로그램
-- Frontend: React (네트워크 상태 시각화 UI)
-- Backend: Electron / Node.js
+- frontend: React (네트워크 상태 시각화 UI)
+- backend: Electron / Node.js
 - 통신 방식: Electron IPC (contextBridge + ipcMain/ipcRenderer)
 - 실시간 네트워크 수집 방식: PowerShell 명령어 직접 호출
 - netstat -ano로 연결된 IP와 포트 그리고 PID 확인
@@ -11,7 +11,6 @@
 
 ---
 ### 기능
-
 - ip의 국가/위치 조회
 - 신뢰할 수 있는 기관인지 확인
 - 일반적인 통신 포트를 사용 중인지 확인
@@ -23,10 +22,19 @@
 > 이상 포트/접속 여부를 대시보드 형태로 시각화.    
 > 만약 위험한 접속이 감지될 시 경고 알림.
 
+#### 위험도 알고리즘
+> 네트워크 상태를 8가지 시나리오로 정의  
+> 일반적인 포트 번호이거나 안전한 서버(구글, 아마존) 일 경우 0점  
+> 일상적이지 않은 포트거나 비정상적인 IP와 PID 상태등을 위 기능과 같이 분석해서  
+> 각 시나리오에 맞는 변수를 만들고 참일 때 점수 부여  
+> 최종적으로 선정된 가장 의심스러운 상황을 위험도에 띄움는 형태로 제작   
+
 ### 현재_Electron IPC Version
 #### 실행 화면
 <p align="center">
-<img src="https://github.com/user-attachments/assets/4a5094b8-f8c1-401d-a272-e3d73bae62c3" width="100%" height="100%">
+<img src="https://github.com/user-attachments/assets/4a5094b8-f8c1-401d-a272-e3d73bae62c3" width="100%" height="100%">  
+  
+- "리스크 통계" 버튼을 통해 현재 위험 상황이나 상태를 즉시 모아서 보여주니 빠르게 확인 가능
   
   > <img src="https://github.com/user-attachments/assets/2dde293e-260f-4fc5-87d4-1e5b8f71e106" width="100%" height="100%">
   - 들어오는 데이터양과 나가는 데이터양 시각적 확인 가능
