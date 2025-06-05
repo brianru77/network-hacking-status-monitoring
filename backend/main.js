@@ -4,7 +4,7 @@ const { exec } = require('child_process');
 const axios = require('axios');
 const iconv = require('iconv-lite'); // 인코딩 문제 해결용
 
-// 📡 네트워크 사용량 정보 가져오기
+// 네트워크 사용량 정보 가져오기
 function getNetworkUsage() {
   return new Promise((resolve, reject) => {
     const cmd = 'powershell -Command "Get-Counter -Counter \\"\\Network Interface(*)\\Bytes Received/sec\\", \\"\\Network Interface(*)\\Bytes Sent/sec\\""';
@@ -35,13 +35,13 @@ function getNetworkUsage() {
         }
       }
 
-      console.log("✅ 네트워크 데이터:", data);
+      console.log("네트워크 데이터:", data);
       resolve(data);
     });
   });
 }
 
-// 🌐 연결 정보 가져오기
+// 연결 정보 가져오기
 function getConnections() {
   return new Promise((resolve, reject) => {
     exec('netstat -ano', (err, stdout) => {
@@ -67,7 +67,7 @@ function getConnections() {
   });
 }
 
-// 🧾 PID로 실행 파일 경로 가져오기
+// PID로 실행 파일 경로 가져오기
 function getProcessPath(pid) {
   return new Promise((resolve) => {
     exec(`powershell -Command "(Get-Process -Id ${pid} -ErrorAction SilentlyContinue).Path"`, (err, stdout) => {
@@ -77,7 +77,7 @@ function getProcessPath(pid) {
   });
 }
 
-// 🌍 IP 정보 조회 (ip-api 사용)
+// IP 정보 조회 (ip-api 사용)
 async function getIpInfo(ip) {
   const isLocalOrInvalid = (
     ip.startsWith('192.') || ip.startsWith('10.') ||
@@ -100,12 +100,12 @@ async function getIpInfo(ip) {
     }
     return { country: '-', region: '-', org: '-' };
   } catch (error) {
-    console.error(`❌ IP 정보 조회 실패 (${ip}):`, error.message);
+    console.error(`IP 정보 조회 실패 (${ip}):`, error.message);
     return { country: '-', region: '-', org: '-' };
   }
 }
 
-// ✅ IPC 핸들러 등록
+// IPC 핸들러 등록
 ipcMain.handle('getNetworkUI', async () => {
   try {
     return await getNetworkUsage();
