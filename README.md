@@ -1,8 +1,8 @@
 ## 네트워크 상태 모니터링 프로그램
-- frontend: React (네트워크 상태 시각화 UI)
-- backend: Electron / Node.js
-- 통신 방식: Electron IPC (contextBridge + ipcMain/ipcRenderer)
-- 실시간 네트워크 수집 방식: PowerShell 명령어 직접 호출
+- frontend: react (네트워크 상태 시각화 UI)
+- backend: electron / node.js
+- 통신 방식: electron ipc (contextBridge + ipcMain/ipcRenderer)
+- 실시간 네트워크 수집 방식: 파워쉘 명령어 직접 호출
 - netstat -ano로 연결된 IP와 포트 그리고 PID 확인
 - tasklist, wmic로 실행 중인 프로세스 정보 확인
 - Get-Counter 네트워크 송/수신량 확인
