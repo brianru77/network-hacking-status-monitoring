@@ -29,7 +29,7 @@
 <img src="https://github.com/user-attachments/assets/4a5094b8-f8c1-401d-a272-e3d73bae62c3" width="100%" height="100%">
   
   > <img src="https://github.com/user-attachments/assets/2dde293e-260f-4fc5-87d4-1e5b8f71e106" width="100%" height="100%">
-  - 들어오는 데이터와 나가는 데이터 시각적 확인 가능
+  - 들어오는 데이터양과 나가는 데이터양 시각적 확인 가능
   > <img src="https://github.com/user-attachments/assets/8665c639-112b-4737-892f-b5654fb24c40" width="100%" height="100%">
   - 실행 화면 캡쳐본
 </p>
