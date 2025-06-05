@@ -23,13 +23,27 @@
 > 이상 포트/접속 여부를 대시보드 형태로 시각화.    
 > 만약 위험한 접속이 감지될 시 경고 알림.
 
-### 현재 버전_New Version
+### 현재_Electron IPC Version
+#### 실행 화면
+<p align="center">
+<img src="https://github.com/user-attachments/assets/4a5094b8-f8c1-401d-a272-e3d73bae62c3" width="100%" height="100%">
+  
+  > <img src="https://github.com/user-attachments/assets/2dde293e-260f-4fc5-87d4-1e5b8f71e106" width="100%" height="100%">
+  - 실행 화면 캡쳐본
+  > <img src="https://github.com/user-attachments/assets/8665c639-112b-4737-892f-b5654fb24c40" width="100%" height="100%">
+  - 들어오는 데이터와 나가는 데이터 시각적 확인 가능
+</p>
 
+#### 위험한 연결 감지 시 경고 알림
+<p align="center">
+<img src="https://github.com/user-attachments/assets/500a68fb-f863-4078-9af0-92e81bb60d90" width="100%" height="100%">
+<img src="https://github.com/user-attachments/assets/51f7bcee-68c0-4acd-a543-d400e894654e" width="100%" height="100%">
+</p> 
 
 ---
 
 <details>
-<summary>구버전 보기</summary>
+<summary>구 Express Version 보기</summary>
   
 ### Electron + React 기반
 - Backend (Node.js / Express + Electron)
