@@ -1,4 +1,4 @@
-// frontend/src/components/NetworkCard.jsx
+//frontend/src/components/NetworkCard.jsx
 import React from 'react';
 
 const formatBytes = (bytes) => {

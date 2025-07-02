@@ -2,9 +2,9 @@ const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
 const { exec } = require('child_process');
 const axios = require('axios');
-const iconv = require('iconv-lite'); // 인코딩 문제 해결용
+const iconv = require('iconv-lite'); //인코딩 문제 해결용
 
-// 📡 네트워크 사용량 정보 가져오기
+//네트워크 사용량 정보 가져오기
 function getNetworkUsage() {
   return new Promise((resolve, reject) => {
     const cmd = 'powershell -Command "Get-Counter -Counter \\"\\Network Interface(*)\\Bytes Received/sec\\", \\"\\Network Interface(*)\\Bytes Sent/sec\\""';
@@ -41,7 +41,7 @@ function getNetworkUsage() {
   });
 }
 
-// 🌐 연결 정보 가져오기
+//연결 정보 가져오기
 function getConnections() {
   return new Promise((resolve, reject) => {
     exec('netstat -ano', (err, stdout) => {
@@ -67,7 +67,7 @@ function getConnections() {
   });
 }
 
-// 🧾 PID로 실행 파일 경로 가져오기
+//PID로 실행 파일 경로 가져오기
 function getProcessPath(pid) {
   return new Promise((resolve) => {
     exec(`powershell -Command "(Get-Process -Id ${pid} -ErrorAction SilentlyContinue).Path"`, (err, stdout) => {
@@ -77,7 +77,7 @@ function getProcessPath(pid) {
   });
 }
 
-// 🌍 IP 정보 조회 (ip-api 사용)
+//IP 정보 조회 (ip-api 사용)
 async function getIpInfo(ip) {
   const isLocalOrInvalid = (
     ip.startsWith('192.') || ip.startsWith('10.') ||
@@ -105,7 +105,7 @@ async function getIpInfo(ip) {
   }
 }
 
-// ✅ IPC 핸들러 등록
+//IPC 핸들러 등록
 ipcMain.handle('getNetworkUI', async () => {
   try {
     return await getNetworkUsage();
@@ -137,7 +137,7 @@ ipcMain.handle('getIpInfo', async (_event, ip) => {
   return await getIpInfo(ip);
 });
 
-// 🪟 Electron 윈도우 생성
+//Electron 윈도우 생성
 function createWindow() {
   const win = new BrowserWindow({
     width: 1200,

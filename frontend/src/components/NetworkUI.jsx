@@ -1,4 +1,4 @@
-// frontend/src/components/NetworkUI.jsx
+//frontend/src/components/NetworkUI.jsx
 import React from 'react';
 import NetworkCard from './NetworkCard';
 

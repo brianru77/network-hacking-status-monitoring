@@ -109,52 +109,52 @@ function Home() {
 
         let score = 0;
         let riskLevel = '관찰 대상';
-        let riskColor = 'black'; // 기본 색깔: 검정
+        let riskColor = 'black'; //기본 색깔: 검정
 
-        // 조건별 점수 및 위험도 설정
+        //조건별 점수 및 위험도 설정
         if (conn.ip === '' || conn.ip === '0.0.0.0') {
           riskLevel = '관찰 대상';
           riskColor = 'black';
           score = 0;
         } else if (commonPorts.includes(parseInt(conn.port))) {
           riskLevel = '정상 포트';
-          riskColor = 'green'; // 초록색
+          riskColor = 'green'; //초록색
           score = 1;
         } else if (geo.org && ['Google', 'Microsoft', 'Amazon', 'Cloudflare'].some(t => geo.org.includes(t))) {
           riskLevel = '안전한 서버';
-          riskColor = 'green'; // 초록색
+          riskColor = 'green'; //초록색
           score = 1;
         } else if (isUnresponsive) {
           riskLevel = '응답없음/스캔공격 또는 패킷 필터링 의심';
-          riskColor = '#FFEB3B'; // 노란색
+          riskColor = '#FFEB3B'; //노란색
           score = 2;
         } else if (isLateNight) {
           riskLevel = '자동화 공격/스캔/침입시도/DDoS 공격 의심';
-          riskColor = '#FFEB3B'; // 노란색
+          riskColor = '#FFEB3B'; //노란색
           score = 2;
         } else if (isDuplicateConn) {
           riskLevel = '취약점 스캐닝 위한 악성 프로세스 연결시도 의심';
-          riskColor = 'orange'; // 주황색
+          riskColor = 'orange'; //주황색
           score = 3;
         } else if (weirdPort) {
           riskLevel = '일반적으로 사용되지 않는 포트/비정상적 연결';
-          riskColor = 'orange'; // 주황색
+          riskColor = 'orange'; //주황색
           score = 3;
         } else if (isSuspicious) {
           riskLevel = '비정상 파일 경로/의심되는 확장자로 악성코드 의심';
-          riskColor = 'red'; // 빨간색
+          riskColor = 'red'; //빨간색
           score = 4;
         } else if (['china', 'russia', 'north korea'].some(bad => (geo.country || '').toLowerCase().includes(bad))) {
           riskLevel = '사이버 공격/스파이 활동/정보 유출 시도';
-          riskColor = 'red'; // 빨간색
+          riskColor = 'red'; //빨간색
           score = 4;
         } else if (isListeningWeird) {
           riskLevel = '시스템을 감염시키려는 백도어 의심';
-          riskColor = 'darkred'; // 검붉은색
+          riskColor = 'darkred'; //검붉은색
           score = 5;
         }
 
-        // 고위험 연결에 알림 띄우기
+        //고위험 연결에 알림 띄우기
         const alertKey = `${conn.ip}_${conn.pid}`;
         if (riskLevel === '위험한 연결 해킹 강력 의심' && !seenAlerts.has(alertKey)) {
           new Notification("🚨 위험 연결 감지", {
@@ -185,7 +185,7 @@ function Home() {
     };
 
     fetchConnections();
-    const connInterval = setInterval(fetchConnections, 60000); // 1분마다 갱신
+    const connInterval = setInterval(fetchConnections, 60000); //1분마다 갱신
     return () => clearInterval(connInterval);
   }, []);
 
