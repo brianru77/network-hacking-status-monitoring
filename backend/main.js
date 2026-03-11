@@ -35,7 +35,7 @@ function getNetworkUsage() {
         }
       }
 
-      console.log("✅ 네트워크 데이터:", data);
+      console.log(" 네트워크 데이터:", data);
       resolve(data);
     });
   });
