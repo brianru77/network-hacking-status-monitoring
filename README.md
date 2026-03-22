@@ -53,7 +53,7 @@
 <details>
 <summary>구 Express Version 보기</summary>
   
-### Electron + React 기반
+### Electron
 - Backend (Node.js / Express + Electron)
 - Node.js 기반의 Express 서버 (네트워크 정보 처리, netstat -ano)
 - Electron으로.exe로 패키징 netstat -ano 실행 → 실시간 IP, 포트, PID 정보 수집
